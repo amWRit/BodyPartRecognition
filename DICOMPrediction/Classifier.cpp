@@ -214,7 +214,14 @@ void make_predictions_on_loaded_set(const std::vector<cv::Mat>& images,
             std::cerr << "Error: Prediction failed!" << std::endl;
         }
 
-        std::cout << "Predicted Body Part ID: " << predicted_label << " || Actual label: " << labels[indices[i]] << std::endl;
+        // Check if the predicted label exists in the map
+        std::string predicted_body_part = "Unknown";
+        auto it = BODY_PARTS.find(predicted_label);
+        if (it != BODY_PARTS.end()) {
+            predicted_body_part = it->second;
+        }
+
+        std::cout << "Predicted Body Part ID: " << predicted_label << " || Actual label: " << labels[indices[i]] << " || " << predicted_body_part << std::endl;
     }
     std::cout << "Predictions completed.\n";
 }
@@ -243,7 +250,13 @@ void make_predictions_on_test_cases(const std::string& images_dir, ModelType mod
             if (predicted_label == -1) {
                 std::cerr << "Error: Prediction failed!" << std::endl;
             }
-            std::cout << filePath << " || Predicted Body Part ID: " << predicted_label << std::endl;
+            std::string predicted_body_part = "Unknown";
+            auto it = BODY_PARTS.find(predicted_label);
+            if (it != BODY_PARTS.end()) {
+                predicted_body_part = it->second;
+            }
+
+            std::cout << filePath << " || Predicted Body Part ID: " << predicted_label << " || " << predicted_body_part << std::endl;
         }
     }
     std::cout << "Predictions completed.\n";
