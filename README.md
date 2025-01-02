@@ -2,6 +2,7 @@
 
 This project implements a body part recognition system using machine learning techniques. It processes DICOM images, converts them to PNG format, and utilizes SVM (Support Vector Machine) and KNN (K-Nearest Neighbors) classifiers to identify various body parts from medical images.
 
+This project is based on my other project [TrafficSignRecognition](https://github.com/amWRit/TrafficSignRecogition).
 ## Features
 
 - **Model Training**: Train classification models using SVM and KNN algorithms.
